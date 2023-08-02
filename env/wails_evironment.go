@@ -5,26 +5,14 @@ package env
 
 import (
 	"context"
-	"net/http"
 )
 
 type Environment struct {
 	ctx context.Context
-	ipc IPC
 }
 
 func NewEnvironment() *Environment {
-	return &Environment{
-		ipc: NewIPC(base_ipc_url),
-	}
-}
-
-func (c *Environment) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	c.ipc.ServeHTTP(w, r)
-}
-
-func (c *Environment) RegisterCallback(name string, fn any) {
-	c.ipc.RegisterCallback(name, fn)
+	return &Environment{}
 }
 
 func (c *Environment) StartUp(ctx context.Context) {

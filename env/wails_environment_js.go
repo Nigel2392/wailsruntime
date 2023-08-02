@@ -1,13 +1,8 @@
 package env
 
 import (
-	"encoding/json"
-	"errors"
-	"fmt"
-	"io"
 	"syscall/js"
 
-	"github.com/Nigel2392/jsext/v2/fetch"
 	"github.com/Nigel2392/jsext/v2/jsc"
 	"github.com/Nigel2392/wailsruntime"
 )
@@ -44,38 +39,6 @@ func OpenMultipleFiles(constraint *MultipleFileConstraint) ([]File, error) {
 func SaveFile(file File, flags FileFlags) error {
 	var resp = environWailsCall[bool]("SaveFile", true, file, flags)
 	return resp.AsError()
-}
-
-func CallIPC(funcName string, args ...any) ([]any, error) {
-	var jsonBytes, err = json.Marshal(args)
-	if err != nil {
-		return nil, errors.New("error marshalling arguments: " + err.Error())
-	}
-	var request = fetch.NewRequest("POST", fmt.Sprintf("%s/%s.callback", base_ipc_url, funcName))
-	request.SetHeader("Content-Type", "application/json")
-	err = request.SetBody(jsonBytes)
-	if err != nil {
-		return nil, errors.New("error setting request body: " + err.Error())
-	}
-
-	response, err := fetch.Fetch(request)
-	if err != nil {
-		return nil, errors.New("error fetching: " + err.Error())
-	}
-	defer response.Body.Close()
-
-	var retArgs = WailsResponse[[]any]{
-		Data: make([]any, 0),
-	}
-
-	var decoder = json.NewDecoder(response.Body)
-	if err := decoder.Decode(&retArgs); err != nil && err.Error() != io.EOF.Error() {
-		return nil, errors.New("error decoding response: " + err.Error())
-	}
-	if retArgs.Err != "" {
-		return nil, errors.New("error calling function: " + retArgs.Err)
-	}
-	return retArgs.Data, nil
 }
 
 func environWailsCall[T any](funcName string, needsRetArgs bool, args ...any) WailsResponse[T] {

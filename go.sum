@@ -1,7 +1,5 @@
 github.com/Nigel2392/jsext/v2 v2.8.3 h1:kA4kVlgJdQj8zasEpzj4UWDq+xrIPEV+u9puAq1iDLA=
 github.com/Nigel2392/jsext/v2 v2.8.3/go.mod h1:KdxzZP8EEPhLqejZwrONzETO4xYVDCRdfjDvtw7dGTc=
-github.com/Nigel2392/mux v1.1.9 h1:FAhgr0WFJw9xlR2XwIWRxxgp2hI/aUylrDw7NarwEzI=
-github.com/Nigel2392/mux v1.1.9/go.mod h1:adQ+PBv5zT/CGxnWZPpOEoPths3apGNPGLQrhu3d69A=
 github.com/leaanthony/slicer v1.5.0 h1:aHYTN8xbCCLxJmkNKiLB6tgcMARl4eWmH9/F+S/0HtY=
 github.com/leaanthony/slicer v1.5.0/go.mod h1:FwrApmf8gOrpzEWM2J/9Lh79tyq8KTX5AzRtwV7m4AY=
 github.com/matryer/is v1.4.0 h1:sosSmIWwkYITGrxZ25ULNDeKiMNzFSr4V/eqBQP0PeE=

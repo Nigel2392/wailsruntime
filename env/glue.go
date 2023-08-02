@@ -15,8 +15,6 @@ const (
 	O_TRUNC  FileFlags = 128
 )
 
-const base_ipc_url = "/env/environ/environment"
-
 type WailsResponse[T any] struct {
 	Data T      `json:"data,omitempty"`
 	OK   bool   `json:"ok,omitempty"`
