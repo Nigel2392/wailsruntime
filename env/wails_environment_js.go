@@ -11,31 +11,37 @@ func init() {
 	jsc.BASE64 = true
 }
 
+// Get an environment variable from the OS
 func GetEnv(key string) (data string, ok bool) {
 	var resp = environWailsCall[string]("GetEnv", true, key)
 	return resp.Data, resp.OK
 }
 
+// Get an environment variable.
 func SetEnv(key, value string) error {
 	var resp = environWailsCall[bool]("SetEnv", true, key, value)
 	return resp.AsError()
 }
 
+// Unset an environment variable.
 func UnsetEnv(key string) error {
 	var resp = environWailsCall[bool]("UnsetEnv", true, key)
 	return resp.AsError()
 }
 
+// Open a file dialog.
 func OpenFile(constraint *FileConstraint) (File, error) {
 	var wailsResp = environWailsCall[File]("OpenFile", true, constraint)
 	return wailsResp.Data, wailsResp.AsError()
 }
 
+// Open a file dialog to select multiple files.
 func OpenMultipleFiles(constraint *MultipleFileConstraint) ([]File, error) {
 	var wailsResp = environWailsCall[[]File]("OpenMultipleFiles", true, constraint)
 	return wailsResp.Data, wailsResp.AsError()
 }
 
+// Save a file.
 func SaveFile(file File, flags FileFlags) error {
 	var resp = environWailsCall[bool]("SaveFile", true, file, flags)
 	return resp.AsError()
