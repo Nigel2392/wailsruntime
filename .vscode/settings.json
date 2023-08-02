@@ -1,0 +1,9 @@
+{
+    "go.toolsEnvVars": {
+        "GOOS":"js",
+        "GOARCH":"wasm"
+        // "GOOS":"windows",
+        // "GOARCH":"amd64"
+    },
+    "workbench.colorTheme": "2077"
+}
